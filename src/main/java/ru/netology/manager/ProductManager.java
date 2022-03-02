@@ -9,29 +9,24 @@ public class ProductManager {
     private Product[] items = new Product[0];
     private Product item;
 
-    public ProductManager() {
-    }
-
-    public ProductManager(ProductRepository repository, Product[] items, Product item) {
+    public ProductManager(ProductRepository repository) {
         this.repository = repository;
-        this.items = items;
-        this.item = item;
     }
 
     public void add(Product product) {
         repository.save(product);
     }
 
-    public Product[] searchBy(String text) {
+    public Product[] searchBy(String name) {
         Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
-        for (Product product: repository.findAll()) {
-            if (matches(product, text)) {
-                int length = items.length + 1;
+        for (Product product : repository.findAll()) {
+            if (matches(product, name)) {
+                int length = result.length + 1;
                 Product[] tmp = new Product[length];
-                System.arraycopy(items, 0, tmp, 0, items.length);
-                int lastIndex = tmp.length - 1;
-                tmp[lastIndex] = item;
-                items = tmp;
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                int lastIndex = tmp.length-1;
+                tmp[lastIndex] = product;
+                result = tmp;
                 // "добавляем в конец" массива result продукт product
             }
         }

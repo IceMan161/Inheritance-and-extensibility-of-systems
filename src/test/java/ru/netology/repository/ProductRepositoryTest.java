@@ -70,4 +70,18 @@ class ProductRepositoryTest {
 
 
     }
+
+    @Test
+    public void shouldRemoveByNonExistentID() {
+
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        repository.save(fourth);
+
+        Smartphone expexted = null;
+        Product product = repository.findById(5);
+        assertEquals(expexted, product);
+
+    }
 }

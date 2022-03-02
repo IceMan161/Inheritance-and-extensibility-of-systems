@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductManagerTest {
 
-
-    private ProductManager manager = new ProductManager();
     private ProductRepository repository = new ProductRepository();
+    private ProductManager manager = new ProductManager(repository);
+
 
 
     Book first = new Book(1, "The Master and Margarita", 100, "Mikhail Bulgakov");
@@ -34,15 +34,15 @@ class ProductManagerTest {
 
     }
 
-//    @Test
-//    public void shouldSearchBy() {
-//        manager.add(first);
-//        manager.add(second);
-//        manager.add(third);
-//        manager.add(fourth);
-//
-//        Product[] expected = new Product[]{third};
-//        Product[] product = manager.searchBy("Iphone 13");
-//        assertArrayEquals(expected, product);;
-//    }
+    @Test
+    public void shouldSearchBy() {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+
+        Product[] expected = new Product[]{third};
+        Product[] product = manager.searchBy("Iphone 13");
+        assertArrayEquals(expected, product);;
+    }
 }
