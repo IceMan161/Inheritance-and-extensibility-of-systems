@@ -6,8 +6,6 @@ import ru.netology.repository.ProductRepository;
 public class ProductManager {
 
     private ProductRepository repository = new ProductRepository();
-    private Product[] items = new Product[0];
-    private Product item;
 
     public ProductManager(ProductRepository repository) {
         this.repository = repository;
@@ -24,7 +22,7 @@ public class ProductManager {
                 int length = result.length + 1;
                 Product[] tmp = new Product[length];
                 System.arraycopy(result, 0, tmp, 0, result.length);
-                int lastIndex = tmp.length-1;
+                int lastIndex = tmp.length - 1;
                 tmp[lastIndex] = product;
                 result = tmp;
                 // "добавляем в конец" массива result продукт product
