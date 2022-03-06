@@ -1,9 +1,11 @@
 package ru.netology.repository;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
+import ru.netology.exceptions.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +44,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldRemoveById() {
+    public void shouldRemoveById() throws NotFoundException {
 
         repository.save(first);
         repository.save(second);
@@ -83,5 +85,15 @@ class ProductRepositoryTest {
         Product product = repository.findById(5);
         assertEquals(expexted, product);
 
+    }
+
+    @Test
+    public void shouldTest() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        repository.save(fourth);
+
+        Assertions.assertThrows(NotFoundException.class,() ->repository.removeById(5));
     }
 }
