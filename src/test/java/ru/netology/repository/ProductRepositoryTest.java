@@ -44,7 +44,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldRemoveById() throws NotFoundException {
+    public void shouldRemoveById() {
 
         repository.save(first);
         repository.save(second);
@@ -94,6 +94,6 @@ class ProductRepositoryTest {
         repository.save(third);
         repository.save(fourth);
 
-        Assertions.assertThrows(NotFoundException.class,() ->repository.removeById(5));
+        assertThrows(NotFoundException.class, () -> repository.removeById(5));
     }
 }
